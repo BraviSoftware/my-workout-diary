@@ -1,6 +1,8 @@
 MyWorkoutDiary::Application.routes.draw do
-  root "workouts#day"
-  get "workouts/day"
+  root to: redirect("/bravi-software/#{Time.now.strftime('%Y/%m/%d')}")
+
+  # Workouts
+  match ':organization/:year/:month/:day', to: 'workouts#day', as: 'day', via: [:get]
   
   # Auth
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
