@@ -18,7 +18,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'database_cleaner'
+  gem 'database_cleaner', '<= 1.0.1' # temporarily downgraded, broken in rails 4
   gem 'capybara'
   gem 'coveralls', require: false
 end

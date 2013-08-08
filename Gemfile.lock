@@ -48,7 +48,7 @@ GEM
       rest-client
       simplecov (>= 0.7)
       thor
-    database_cleaner (1.1.1)
+    database_cleaner (1.0.1)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (1.4.0)
@@ -175,7 +175,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   coveralls
-  database_cleaner
+  database_cleaner (<= 1.0.1)
   factory_girl_rails
   jbuilder (~> 1.2)
   jquery-rails
