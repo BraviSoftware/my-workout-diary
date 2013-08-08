@@ -14,3 +14,11 @@ gem 'omniauth-facebook', '1.4.0'
 group :doc do
   gem 'sdoc', require: false
 end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'coveralls', require: false
+end
