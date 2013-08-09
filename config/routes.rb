@@ -4,6 +4,9 @@ MyWorkoutDiary::Application.routes.draw do
   # Workouts
   match ':organization/:year/:month/:day', to: 'workouts#day', as: 'day', via: [:get]
   
+  # Activities
+  match "activities/create", via: [:post]
+  
   # Auth
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]

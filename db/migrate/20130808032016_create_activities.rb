@@ -6,6 +6,6 @@ class CreateActivities < ActiveRecord::Migration
       t.timestamps
     end
     add_reference :activities, :activity_type, index: true
-    add_reference :activities, :user_id, index: true
+    add_reference :activities, :user, index: true
   end
 end

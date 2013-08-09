@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :activity do
-    date "MyString"
+    # date Date.new
   end
 end
