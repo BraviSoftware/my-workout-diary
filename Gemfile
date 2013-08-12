@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
+gem 'twitter-bootstrap-rails'
 gem "requirejs-rails", :git => "https://github.com/jwhitley/requirejs-rails.git"
 
 group :doc do

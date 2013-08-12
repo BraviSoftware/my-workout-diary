@@ -1,20 +1,9 @@
-<h1>Workouts#day</h1>
-<p>Find me in app/views/workouts/day.html.erb</p>
-
-<div id="user_nav">
-  <% if current_user %>
-    Signed in as <strong><%= current_user.name %></strong>!
-    <%= link_to "Sign out", signout_path, id: "sign_out" %>
-  <% else %>
-    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-  <% end %>
+<div class="featurette">
+  <h2 class="featurette-heading"><%= @organization %> <span class="muted"><%= @day %>/<%= @month %>/<%= @year %></span></h2>
+  <div>
+    <ul id="user-activities">
+      <li><div class="circular"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash4/273801_100003696264385_1740853510_q.jpg" /></div></li>
+    </ul>
+  </div>
 </div>
-
-<br>
-<b>Organization:</b> <%= @organization %>
-<br>
-<b>Year:</b> <%= @year %>
-<br>
-<b>Month:</b> <%= @month %>
-<br>
-<b>Day:</b> <%= @day %>
+<hr class="featurette-divider">

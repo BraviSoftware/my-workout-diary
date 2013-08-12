@@ -11,3 +11,26 @@
  *= require_self
  *= require_tree .
  */
+
+#user_nav{
+  color: #fff;
+  padding: 15px 20px;
+}
+
+#user-activities{
+  list-style: none;
+}
+
+#user-activities li{
+  
+}
+
+#user-activities li img{
+  border: 1px solid #ccc;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}
