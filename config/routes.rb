@@ -6,6 +6,7 @@ MyWorkoutDiary::Application.routes.draw do
   
   # Activities
   match "activities/create", via: [:post]
+  match "activities/destroy", via: [:delete]
   
   # Auth
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
