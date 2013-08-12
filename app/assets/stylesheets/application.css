@@ -34,3 +34,9 @@
   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
   -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 }
+
+#buttons-activities{
+ margin: 0 auto 40px auto;
+ display: block;
+ width: 175px; 
+}
