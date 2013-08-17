@@ -4,3 +4,7 @@
 require File.expand_path('../config/application', __FILE__)
 
 MyWorkoutDiary::Application.load_tasks
+
+def ruby_rake_task(task)
+  Rake::Task[task].invoke
+end
