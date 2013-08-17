@@ -10,11 +10,13 @@ gem 'jbuilder', '~> 1.2'
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
 gem 'twitter-bootstrap-rails'
-gem "requirejs-rails", :git => "https://github.com/jwhitley/requirejs-rails.git"
+gem "requirejs-rails", :github => "jwhitley/requirejs-rails"
+gem "rufus-scheduler"
 
 gem 'sdoc', require: false, :group => [:doc]
 
 gem 'pg', :group => [:production]
+
 
 group :development, :test do
   gem 'sqlite3'

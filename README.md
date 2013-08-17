@@ -12,4 +12,7 @@ Add these configurations below into your .bashrc or .zshrc file and reload the s
 ```bash
 export MWD_FACEBOOK_APP_ID="insert_the_facebook_app_id_here"
 export MWD_FACEBOOK_SECRET="insert_the_secrete_key_here"
+
+# only for apps hosted on Heroku
+heroku config:add HOSTNAME="http://your_app_url"
 ```
