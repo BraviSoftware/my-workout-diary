@@ -44,4 +44,5 @@
 #email-notification-bar{
   text-align: right;
   padding-top: 5px;
+  height: 20px;
 }
