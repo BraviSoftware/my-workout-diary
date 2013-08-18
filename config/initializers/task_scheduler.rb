@@ -6,6 +6,7 @@ if Rails.env.production?
      require "net/http"
      require "uri"
      puts "### Waking up Heroku scheduler at #{Time.now}"
-     Net::HTTP.get_response(URI.parse(ENV["HOSTNAME"]))
+     Net::HTTP.get_response(URI.parse(ENV["MWD_HOSTNAME"]))
+     UserMailer.activity_reminder.deliver
   end
 end
