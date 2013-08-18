@@ -6,7 +6,7 @@
   <body>
     <h1>Did you do any activity yesterday?</h1>
     <p>
-      If you forgot, please just submit <%= link_to "here", root_url %> to automatically mark a activity for yesterday.<br/>
+      If you forgot, please just submit <%= link_to "here", root_url(token: @user.email_exercise_token) %> to automatically mark a activity for yesterday.<br/>
       Or access the I sweated yesterday - Application <%= link_to "here", root_url %>
     </p>
     <p>Have a great day!</p>

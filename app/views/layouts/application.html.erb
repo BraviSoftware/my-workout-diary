@@ -17,6 +17,7 @@
     <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
     <div class="container">
 
+
       <div class="navbar navbar-inverse">
         <div class="navbar-inner">
           <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
@@ -54,6 +55,9 @@
   <div id="myCarousel" class="carousel slide">
     <div class="carousel-inner">
       <div class="container marketing">
+        <div id="email-notification-bar">
+          <%= user_activated_email_notification %>
+        </div>
         <%= yield %>  
       </div>
     </div>

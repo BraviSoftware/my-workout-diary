@@ -38,5 +38,10 @@
 #buttons-activities{
  margin: 0 auto 40px auto;
  display: block;
- width: 175px; 
+ width: 125px; 
+}
+
+#email-notification-bar{
+  text-align: right;
+  padding-top: 5px;
 }
