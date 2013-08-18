@@ -6,15 +6,17 @@ if Rails.env.production?
   scheduler.every '10m' do
      require "net/http"
      require "uri"
-     puts "### Waking up Heroku scheduler at #{Time.now}"
+     logger.info "# Waking up Heroku scheduler"
      Net::HTTP.get_response(URI.parse(ENV["MWD_HOSTNAME"]))
   end
 
   # scheduler to reminder users to save activity of previous day
   # it runs every day at noon
   scheduler.cron("0 12 * * *") do
+    logger.info "## Sending email reminders"
     User.all_want_receive_mail_notification.each do |user|
-     UserMailer.activity_reminder(user).deliver
+      UserMailer.activity_reminder(user).deliver
+      logger.info "### Sent email to #{user.name} <#{user.email}>"
     end
   end
 end
