@@ -1,19 +1,25 @@
-requirejs.config({
-  "baseUrl" : "assets/javascripts",
-  "paths" : {
-    "knockout": "vendor/assets/javascripts/knockout-2.3.0.js"
-  },
-  "shim" : {
-    "knockout": {
-      deps: ["jQuery"],
-      exports: "knockout"
-    }
-  }
-});
+//= require jquery
+//= require jquery_ujs
+//= require twitter/bootstrap
+//= require turbolinks
 
-define(['jquery', 'knockout'], function($, ko, require) {
-	//TODO: Configure and call dependencies
-  $(function() {
-    console.log(ko);
-  });
-});
+
+
+// requirejs.config({
+//   "baseUrl" : "../../assets/javascripts",
+//   "paths" : {
+//     "knockout": "vendor/assets/javascripts/knockout-2.3.0"
+//   },
+//   "shim" : {
+//     "knockout": {
+//       exports: "knockout"
+//     }
+//   }
+// });
+
+// define(['knockout'], function(ko, require) {
+// 	//TODO: Configure and call dependencies
+//   $(function() {
+//     console.log(ko);
+//   });
+// });
