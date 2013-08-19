@@ -8,6 +8,9 @@ MyWorkoutDiary::Application.routes.draw do
   match "activities/create", via: [:post]
   match "activities/destroy", via: [:delete]
   
+  # Users
+  match "users/switch_email_notification", via: [:post]
+
   # Auth
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]

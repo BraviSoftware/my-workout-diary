@@ -6,6 +6,10 @@
   =require twitter-bootstrap-static/fontawesome
   */
 
+.tooltip{
+  z-index: 9999;
+}
+
 .navbar-wrapper {
   position: absolute;
   top: 0;

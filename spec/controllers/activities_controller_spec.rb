@@ -1,11 +1,9 @@
 require 'spec_helper'
 
 describe ActivitiesController do
-  before(:each) do
-    @date = Time.now.to_date
-    @current_user = FactoryGirl.create(:user)
-    session[:user_id] = @current_user.id
-  end
+  let(:date) { Time.now.to_date }
+  let(:current_user) { FactoryGirl.create(:user) }
+  before(:each) { session[:user_id] = current_user.id }
 
   describe "when GET #index" do
     def do_get(year, month, day)
@@ -25,14 +23,12 @@ describe ActivitiesController do
   end
 
   describe "when POST #create" do    
-    before(:each) do
-      @activity_type = FactoryGirl.create(:activity_type)
-    end
+    let(:activity_type) { FactoryGirl.create(:activity_type) }
 
     def do_create
       post :create, activity: { 
-        date: @date,
-        activity_type_id: @activity_type.id
+        date: date,
+        activity_type_id: activity_type.id
       }
     end
 
@@ -44,29 +40,26 @@ describe ActivitiesController do
     context 'the new activty belongs to ' do
       it "current user" do
         do_create
-        Activity.first.user.should eql(@current_user)
+        Activity.first.user.should eql(current_user)
       end
 
       it "activity type" do
         do_create
-        Activity.first.activity_type.should eql(@activity_type)
+        Activity.first.activity_type.should eql(activity_type)
       end
     end
-
   end
 
   describe "when DELETE #destroy" do
-    before(:each) do
-      @activity = FactoryGirl.create(:activity)
-    end
+    let(:activity) { FactoryGirl.create(:activity) }
 
     def do_destroy(id=nil)
       delete :destroy, id: id 
     end
 
     it "with existing id deletes the activity" do
-      do_destroy(@activity.id)
-      Activity.exists?(@activity.id).should be_false
+      do_destroy(activity.id)
+      Activity.exists?(activity.id).should be_false
     end
 
     it "with no id responds with not found" do

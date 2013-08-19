@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
   has_many :activities
 
+  def switch_email_notification
+    update_attribute :receive_email_notification, !receive_email_notification
+  end
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
