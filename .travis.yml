@@ -3,5 +3,7 @@ rvm:
   - 2.0.0
 before_script: bundle exec rake db:migrate
 script: bundle exec rspec spec
+env: 
+  - MWD_MAIL_USERNAME="fake_user_email@fake_mail.test" MWD_HOSTNAME="fake_hostname.com"
 notifications:
   email: false
