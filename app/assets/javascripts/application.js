@@ -7,6 +7,8 @@
 
 
 $(function(){
+  $('a[data-toggle="tooltip"]').tooltip({container: 'body'});
+
   $("#email-notification-bar").on("ajax:success", "a[data-remote]", function(e, data){
     var badge = $(this).find('.badge');
 
@@ -14,10 +16,10 @@ $(function(){
     badge.text((data.receive_email ? 'Activated' : 'Deactivated') + ' - Email Notification');
   });
 
-  $('a', '#email-notification-bar').tooltip({
-    placement: 'left',
-    title: "Click to switch it."
+  $("#buttons-activities").on("ajax:success", 'a[data-btnajax="activity"]', function(e, data){
+    $(this).addClass('disabled');
   });
+
 })
 
 // requirejs.config({

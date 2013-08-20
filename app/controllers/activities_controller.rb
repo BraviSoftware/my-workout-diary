@@ -5,8 +5,12 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    activity = Activity.create_by_user(params[:activity], current_user)
-    render json: activity, status: :created
+    activity = Activity.switch_activity_by_user(activity_params, current_user)
+    if activity
+      render json: activity, status: :created
+    else
+      render nothing: true, status: :ok
+    end
   end
 
   def destroy
@@ -17,4 +21,9 @@ class ActivitiesController < ApplicationController
       render nothing: true, status: :not_found
     end
   end
+
+  private
+    def activity_params
+      params.require(:activity).permit(:date, :activity_type_id)
+    end
 end

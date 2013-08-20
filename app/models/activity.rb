@@ -11,13 +11,18 @@ class Activity < ActiveRecord::Base
     .order(:id)
   end
 
-  def self.create_by_user(params, user)
-    activity = Activity.new(
-      date: Date.parse(params[:date]),
-      activity_type_id: params[:activity_type_id].to_i
-      )
-    activity.user = user
-    activity.save
+  def self.switch_activity_by_user(params, user)
+    date = Date.parse(params[:date])
+    activity_type_id = params[:activity_type_id].to_i
+
+    activity = Activity.where user_id: user.id, activity_type_id: activity_type_id, date: date
+    if activity
+      activity.destroy
+    else
+      activity.user = user
+    end
+
+    activity.save   
   end
 
   def self.belongs_to_user?(id, user)
