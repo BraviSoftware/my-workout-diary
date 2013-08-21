@@ -1,15 +1,18 @@
 <div class="featurette">
-  <div id="buttons-activities" class="btn-group">
-  <% @activity_types.each do |item| %>
-    <%= link_create_activity item, @user_activities %>
-  <% end %>
+  <div id="buttons-activities" class="btn-group" data-bind="foreach: activityTypes">
+    <button class="btn" data-toggle="tooltip" data-placement="bottom" 
+            data-bind="attr:{ title: description }, 
+            css:{ active: activated },
+            tooltip: true, click: $parent.save">
+      <img src="" data-bind="attr:{ src: image}" />
+    </button>
   </div>
   <h2 class="featurette-heading">
     <%= activity_date %>
     <span class="muted"><%= @organization %></span>
   </h2>
   <div>
-    <ul id="user-activities">
+    <ul id="user-activities" data-bind="foreach: activities">
       <li><div class="circular"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash4/273801_100003696264385_1740853510_q.jpg" /></div></li>
     </ul>
   </div>

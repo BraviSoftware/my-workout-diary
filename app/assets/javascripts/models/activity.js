@@ -1,9 +1,9 @@
-define([], function() {
-  var activity = function(user_name, date, activity_type) {
-    var self = this;
-    self.user_name = user_name;
-    self.activity_type = activity_type;
-  };
+mwd.models.activity = (function(dto){
+  var self = this;
 
-  return activityModel;
+  self.date = dto.date;
+  self.activity_type_id = dto.activity_type_id;
+  self.user_id = dto.user_id;
+
+  return self;
 });

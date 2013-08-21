@@ -10,8 +10,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
 gem 'twitter-bootstrap-rails'
-gem "requirejs-rails", :github => "jwhitley/requirejs-rails"
 gem "rufus-scheduler"
+gem 'toastr-rails'
 
 gem 'sdoc', require: false, :group => [:doc]
 

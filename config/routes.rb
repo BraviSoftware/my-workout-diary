@@ -4,7 +4,11 @@ MyWorkoutDiary::Application.routes.draw do
   # Workouts
   match ':organization/:year/:month/:day', to: 'workouts#day', as: 'day', via: [:get]
   
+  # Activity Types
+  match "activity_types", to: "activity_types#index", via:[:get]
+  
   # Activities
+  match "activities", to: "activities#index", via:[:get]
   match "activities/create", via: [:post]
   match "activities/destroy", via: [:delete]
   

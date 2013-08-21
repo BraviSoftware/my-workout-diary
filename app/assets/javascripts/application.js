@@ -2,9 +2,47 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
-//= require jquery
-//= require_tree ./public
+//= require knockout
+//= require underscore-min
+//= require_self
+//= require_directory ./utils
+//= require_directory ./models
+//= require_directory ./services
+//= require ./viewmodels/activity
 
+// Global Namespaces
+mwd = {
+  models: {},
+  viewModels: {},
+  services: {},
+  auth: function(){
+    var currentUserId = function (){
+      return parseInt($('#user').data('id'), 10);
+    },
+
+    isUserAuthenticated = function(){
+      return currentUserId() && currentUserId() > 0;
+    };
+
+    var vm = {
+      currentUserId: currentUserId,
+      isUserAuthenticated: isUserAuthenticated
+    };
+
+    return vm;
+  }
+};
+
+var mapToModel = function (items, modelType){
+  var list = [];
+  for(var i = 0; i < items.length; i++){
+    list.push(mapItemToModel(items[i], modelType));
+  };
+  return list;
+}
+var mapItemToModel = function (item, modelType) {
+  return new modelType(item);
+}
 
 $(function(){
   $('a[data-toggle="tooltip"]').tooltip({container: 'body'});
@@ -19,24 +57,4 @@ $(function(){
   $("#buttons-activities").on("ajax:success", 'a[data-btnajax="activity"]', function(e, data){
     $(this).addClass('disabled');
   });
-
 })
-
-// requirejs.config({
-//   "baseUrl" : "../../assets/javascripts",
-//   "paths" : {
-//     "knockout": "vendor/assets/javascripts/knockout-2.3.0"
-//   },
-//   "shim" : {
-//     "knockout": {
-//       exports: "knockout"
-//     }
-//   }
-// });
-
-// define(['knockout'], function(ko, require) {
-// 	//TODO: Configure and call dependencies
-//   $(function() {
-//     console.log(ko);
-//   });
-// });
