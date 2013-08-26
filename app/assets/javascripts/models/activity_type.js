@@ -17,10 +17,13 @@ mwd.models.activityType = (function(dto) {
   self.description = dto.description || '';
   self.image = build_image_path(dto.id);
 
-  // extend 
-  self.done_by_current_user = false;
+  // extend
+  self.activityId = ko.observable(dto.activityId);
+  self.doneByCurrentUser = function(){
+    return self.activityId() > 0;
+  }
   self.activated = ko.computed(function(){
-    return self.done_by_current_user;
+    return self.activityId();
   }); 
 
 

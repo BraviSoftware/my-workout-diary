@@ -32,44 +32,63 @@ describe ActivitiesController do
       }
     end
 
-    it "creates the activity" do
-      do_create
-      Activity.count.should eql(1)
-    end
-
-    context 'the new activty belongs to ' do
-      it "current user" do
+    context "when a user has not done activity yet" do
+      it "creates the activity" do
         do_create
-        Activity.first.user.should eql(current_user)
+        Activity.count.should eql(1)
       end
 
-      it "activity type" do
+      context 'the new activty belongs to ' do
+        it "current user" do
+          do_create
+          Activity.first.user.should eql(current_user)
+        end
+
+        it "activity type" do
+          do_create
+          Activity.first.activity_type.should eql(activity_type)
+        end
+      end
+    end
+
+    context "when a user has done activity already" do
+      before(:each) { FactoryGirl.create(:activity, date: date, activity_type_id:  activity_type.id, user_id: current_user.id) }
+
+      it "not creates the activity" do
+        expect{
+          do_create
+        }.not_to change(Activity, :count)
+      end
+
+      it "responds with unprocessable" do
         do_create
-        Activity.first.activity_type.should eql(activity_type)
+        response.should be_unprocessable
       end
     end
   end
 
   describe "when DELETE #destroy" do
-    let(:activity) { FactoryGirl.create(:activity) }
+    # forces generate now
+    let!(:activity) { FactoryGirl.create(:activity, user_id: current_user.id) }
 
     def do_destroy(id=nil)
       delete :destroy, id: id 
     end
 
     it "with existing id deletes the activity" do
-      do_destroy(activity.id)
-      Activity.exists?(activity.id).should be_false
+      expect{
+        do_destroy(activity.id)
+        }.to change(Activity, :count).by(-1)
     end
 
     it "with no id responds with not found" do
       do_destroy
-      response.should be_not_found
+      response.should be_bad_request
     end
 
     it "with not existing id responds with not found" do
       do_destroy
-      response.should be_not_found
+      response.should be_bad_request
     end
   end
 end

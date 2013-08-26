@@ -6,7 +6,11 @@ class ActivitiesController < ApplicationController
   
   def create
     activity = Activity.create_by_user(params[:activity], current_user)
-    render json: activity, status: :created
+    if activity.present?
+      render json: activity, status: :created
+    else
+      render nothing: true, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -14,7 +18,7 @@ class ActivitiesController < ApplicationController
       Activity.destroy(params[:id])
       render nothing: true, status: :no_content
     else
-      render nothing: true, status: :not_found
+      render nothing: true, status: :bad_request
     end
   end
 end

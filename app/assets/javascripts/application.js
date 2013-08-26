@@ -4,6 +4,7 @@
 //= require turbolinks
 //= require knockout
 //= require underscore-min
+//= require toastr
 //= require_self
 //= require_directory ./utils
 //= require_directory ./models
@@ -42,6 +43,14 @@ var mapToModel = function (items, modelType){
 }
 var mapItemToModel = function (item, modelType) {
   return new modelType(item);
+}
+var selectedDate = function(){
+  var date = new Date();
+  return {
+    month: date.getUTCMonth() + 1,
+    day: date.getUTCDate(),
+    year: date.getUTCFullYear()
+  }
 }
 
 $(function(){
