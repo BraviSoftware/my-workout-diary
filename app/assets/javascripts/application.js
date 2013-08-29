@@ -47,9 +47,9 @@ var mapItemToModel = function (item, modelType) {
 var selectedDate = function(){
   var date = new Date();
   return {
-    month: date.getUTCMonth() + 1,
-    day: date.getUTCDate(),
-    year: date.getUTCFullYear()
+    month: date.getMonth() + 1,
+    day: date.getDate(),
+    year: date.getFullYear()
   }
 }
 

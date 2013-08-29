@@ -22,7 +22,8 @@
 }
 
 #user-activities li{
-  
+  display: inline-block;
+  margin: 10px;  
 }
 
 #user-activities li img{

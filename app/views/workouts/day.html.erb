@@ -12,8 +12,9 @@
     <span class="muted"><%= @organization %></span>
   </h2>
   <div>
-    <ul id="user-activities" data-bind="foreach: activities">
-      <li><div class="circular"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash4/273801_100003696264385_1740853510_q.jpg" /></div></li>
+    <ul id="user-activities" data-bind="foreach: activitiesGroupedByUser">
+      <!-- <pre data-bind="text: ko.toJSON($data, null, 2)"></pre> -->
+      <li><div class="circular"><img data-bind="attr: { src: activities[0].user.picture }" /></div></li>
     </ul>
   </div>
 </div>

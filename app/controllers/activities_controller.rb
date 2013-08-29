@@ -1,7 +1,7 @@
 class ActivitiesController < ApplicationController
+
   def index
-    activities = Activity.all_by_date(params[:year], params[:month], params[:day])
-    render json: activities, status: :ok
+    @activities = Activity.all_by_date(params[:year], params[:month], params[:day])
   end
   
   def create

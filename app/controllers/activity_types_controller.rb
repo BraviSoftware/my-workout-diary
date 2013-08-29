@@ -1,5 +1,5 @@
 class ActivityTypesController < ApplicationController
   def index
-    render json: ActivityType.all, status: :ok
+    @activity_types = ActivityType.all
   end
 end

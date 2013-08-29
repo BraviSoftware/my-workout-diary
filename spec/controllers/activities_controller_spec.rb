@@ -7,7 +7,7 @@ describe ActivitiesController do
 
   describe "when GET #index" do
     def do_get(year, month, day)
-      get :index, year: year, month: month, day: day
+      get :index, year: year, month: month, day: day, format: :json
     end
 
     it "respond with json" do
