@@ -1,27 +1,26 @@
 mwd.viewModels.activity = (
-  function(serviceActivity, serviceActivityType, Activity, ActivityType, auth){
+  function(serviceActivity, serviceActivityType, Activity, ActivityType, auth, util){
     var activityTypes = ko.observableArray(),
     activities = ko.observableArray([]),
     activitiesGroupedByUser = ko.observableArray([]);
 
-    function save(item) {
-      item.doneByCurrentUser() ? destroy(item) : create(item);
+    function save(activityType) {
+      activityType.doneByCurrentUser() ? destroy(activityType) : create(activityType);
     }
 
-    function create(item) {
-      var activity = new Activity({ date: new Date(), activity_type_id: item.id });
+    function create(activityType) {
+      var activity = new Activity({ date: new Date(), activity_type_id: activityType.id });
       $.when(serviceActivity.create(activity))
-      .done(function(data){
-        item.activityId(data.id);
-        activities.push(data);
+      .done(function(activity){
+        addActivity(activityType, activity);
         toastr.success('Successfully marked activity.');
       });
     }
 
-    function destroy(item){
-      $.when(serviceActivity.destroy(item.activityId()))
+    function destroy(activityType){
+      $.when(serviceActivity.destroy(activityType.activityId()))
       .done(function(){
-        item.activityId(null);
+        removeActivity(activityType);
         toastr.success('Successfully unmarked activity.');
       });
     }
@@ -29,13 +28,14 @@ mwd.viewModels.activity = (
     function getActivityTypeByActivity(activity) {
       return auth.currentUserId() === activity.user.id && activityTypes()[activity.activity_type_id - 1]; // by index
     }
-    
-    function init(){
-      // load activity types
-      $.when(serviceActivityType.all()).done(activityTypes);
 
-      // load activities
-      $.when(serviceActivity.all(selectedDate().year, selectedDate().month, selectedDate().day)).done(function(items){
+    function loadActivityTypes(){
+      $.when(serviceActivityType.all()).done(activityTypes);
+    }
+
+    function loadActivities(){
+      var date = util.selectedDate();
+      $.when(serviceActivity.all(date.year, date.month, date.day)).done(function(items){
         items.forEach(function(item){
           activities.push(item);
 
@@ -63,11 +63,40 @@ mwd.viewModels.activity = (
       activitiesGroupedByUser(groups);
     }
 
-    function removeActivity(item){
-      if(activitiesGroupIds.indexOf(item.user_id) === -1){
-        activitiesGroupIds.push(item.user_id);
-        activitiesGroupedByUser.push(item);
+    function removeActivity(activityType){
+      activityType.activityId(null);
+
+      var group = findGroupByCurrentUser();
+      if(group){
+        // remove activity
+        group.activities = _.reject(group.activities, function(activity){ return activity.activity_type_id == activityType.id; });
+
+        // remove group
+        if(group.activities.length === 0) {
+          activitiesGroupedByUser.remove(function(user){ return isUserGroup(user); });
+        }
       }
+    }
+
+    function findGroupByCurrentUser(){
+      return _.find(activitiesGroupedByUser(), function(user) { return isUserGroup(user); });
+    }
+
+    function addActivity(activityType, activity) {
+      activityType.activityId(activity.id);
+
+      var group = findGroupByCurrentUser();
+      if (!group) {
+        group = {
+              user_id: auth.currentUserId(),
+              activities: [activity]
+          };
+        activitiesGroupedByUser.push(group);
+      };
+    }
+
+    function isUserGroup(user){
+      return parseInt(user.user_id, 10) === auth.currentUserId(); 
     }
 
     var vm = {
@@ -76,7 +105,10 @@ mwd.viewModels.activity = (
       save: save
     };
 
-    init();
+    (function init(){
+      loadActivityTypes();
+      loadActivities();
+    }());
 
     return vm;
   });
@@ -88,7 +120,8 @@ $(function(){
     new mwd.services.activityType(mwd.models.activityType),
     mwd.models.activity,
     mwd.models.activityType,
-    mwd.auth()
+    mwd.common.authentication(),
+    mwd.common.util()
     )
   );
 });

@@ -5,9 +5,9 @@ class ActivitiesController < ApplicationController
   end
   
   def create
-    activity = Activity.create_by_user(params[:activity], current_user)
-    if activity.present?
-      render json: activity, status: :created
+    @activity = Activity.create_by_user(params[:activity], current_user)
+    if @activity.present?
+      render 'create.json.jbuilder', status: :created
     else
       render nothing: true, status: :unprocessable_entity
     end

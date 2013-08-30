@@ -4,20 +4,23 @@ mwd.services.activity = (function(model){
   function all(year, month, day){
     return $.Deferred(function (def) {
       $.getJSON(serviceUrl, { year: year, month: month, day: day }, function(data){
-        def.resolve(mapToModel(data, model));
+        def.resolve(mwd.common.util().mapListToModel(data, model));
       });
     }).promise();
   }
   
-  function create(activity){    
-    return $.post(serviceUrl, { activity: activity });
+  function create(activity){
+    return $.Deferred(function (def) {
+      $.post(serviceUrl, { activity: activity }).done(function(data){
+        def.resolve(mwd.common.util().mapItemToModel(data, model));
+      });
+    }).promise();
   }
 
   function destroy(id){
     return $.ajax({ url: serviceUrl + '/' + id, type: 'DELETE' });
   }
 
-  // public
   return {
     all: all,
     create: create,

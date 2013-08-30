@@ -6,51 +6,30 @@
 //= require underscore-min
 //= require toastr
 //= require_self
-//= require_directory ./utils
+//= require_directory ./common
 //= require_directory ./models
 //= require_directory ./services
 //= require ./viewmodels/activity
 
-// Global Namespaces
+/* Global Namespaces
+--------------------*/
 mwd = {
   models: {},
   viewModels: {},
   services: {},
-  auth: function(){
-    var currentUserId = function (){
-      return parseInt($('#user').data('id'), 10);
-    },
-
-    isUserAuthenticated = function(){
-      return currentUserId() && currentUserId() > 0;
-    };
-
-    var vm = {
-      currentUserId: currentUserId,
-      isUserAuthenticated: isUserAuthenticated
-    };
-
-    return vm;
-  }
+  common: {}
 };
 
-var mapToModel = function (items, modelType){
-  var list = [];
-  for(var i = 0; i < items.length; i++){
-    list.push(mapItemToModel(items[i], modelType));
-  };
-  return list;
-}
-var mapItemToModel = function (item, modelType) {
-  return new modelType(item);
-}
-var selectedDate = function(){
-  var date = new Date();
-  return {
-    month: date.getMonth() + 1,
-    day: date.getDate(),
-    year: date.getFullYear()
-  }
+/* Config Toastr
+---------------*/
+toastr.options = {
+  "debug": false,
+  "positionClass": "toast-bottom-right",
+  "onclick": null,
+  "fadeIn": 300,
+  "fadeOut": 1000,
+  "timeOut": 5000,
+  "extendedTimeOut": 1000
 }
 
 $(function(){
