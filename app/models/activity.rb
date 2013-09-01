@@ -6,7 +6,7 @@ class Activity < ActiveRecord::Base
     date = Date.new(year.to_i, month.to_i, day.to_i)
     
     # find
-    includes(:user).by_same_date(date).order(:id)
+    includes(:user, :activity_type).by_same_date(date).order(:id)
   end
 
   def self.create_by_user(params, user)

@@ -26,7 +26,7 @@ mwd.viewModels.activity = (
     }
 
     function getActivityTypeByActivity(activity) {
-      return auth.currentUserId() === activity.user.id && activityTypes()[activity.activity_type_id - 1]; // by index
+      return auth.currentUserId() === activity.user.id && activityTypes()[activity.activity_type.id - 1]; // by index
     }
 
     function loadActivityTypes(){
@@ -56,7 +56,7 @@ mwd.viewModels.activity = (
       var groups = _.map(groupsByUser, function (group, key, list) {
           return {
               user_id: key,
-              activities: group
+              activities: ko.observableArray(group)
           };
       });
 
@@ -69,10 +69,10 @@ mwd.viewModels.activity = (
       var group = findGroupByCurrentUser();
       if(group){
         // remove activity
-        group.activities = _.reject(group.activities, function(activity){ return activity.activity_type_id == activityType.id; });
+        group.activities.remove(function(activity){ return activity.activity_type.id == activityType.id; });
 
         // remove group
-        if(group.activities.length === 0) {
+        if(group.activities().length === 0) {
           activitiesGroupedByUser.remove(function(user){ return isUserGroup(user); });
         }
       }
@@ -86,13 +86,17 @@ mwd.viewModels.activity = (
       activityType.activityId(activity.id);
 
       var group = findGroupByCurrentUser();
-      if (!group) {
-        group = {
-              user_id: auth.currentUserId(),
-              activities: [activity]
-          };
-        activitiesGroupedByUser.push(group);
-      };
+      if (group) {
+        group.activities.push(activity);
+        return;
+      }
+
+      // create new user group
+      group = {
+            user_id: auth.currentUserId(),
+            activities: ko.observableArray([activity])
+        };
+      activitiesGroupedByUser.push(group);
     }
 
     function isUserGroup(user){

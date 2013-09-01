@@ -1,2 +1,3 @@
-json.(@activity, :id, :activity_type_id)
+json.(@activity, :id)
+json.activity_type @activity.activity_type, :id, :name
 json.user @activity.user, :id, :name, :username

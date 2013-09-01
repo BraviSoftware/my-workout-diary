@@ -14,7 +14,13 @@
   <div>
     <ul id="user-activities" data-bind="foreach: activitiesGroupedByUser">
       <!-- <pre data-bind="text: ko.toJSON($data, null, 2)"></pre> -->
-      <li><div class="circular"><img data-bind="attr: { src: activities[0].user.picture }" /></div></li>
+      <li>
+        <div class="circular"><img data-bind="attr: { src: activities().length && activities()[0].user.picture }" /></div>
+        <ul class="activity-type-bullets" data-bind="foreach: activities">
+          <li data-toggle="tooltip" data-placement="bottom" 
+                data-bind="attr:{ title: activity_type.name }, tooltip: true, css: 'activity-type-bullet-' + activity_type.id"></li>
+        </ul>
+      </li>
     </ul>
   </div>
 </div>

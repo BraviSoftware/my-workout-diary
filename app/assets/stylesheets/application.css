@@ -21,12 +21,12 @@
   list-style: none;
 }
 
-#user-activities li{
+#user-activities>li{
   display: inline-block;
   margin: 10px;  
 }
 
-#user-activities li img{
+#user-activities>li img{
   border: 1px solid #ccc;
   border-radius: 150px;
   -webkit-border-radius: 150px;
@@ -46,4 +46,30 @@
   text-align: right;
   padding-top: 5px;
   height: 20px;
+}
+
+.activity-type-bullets{
+  margin: 0;
+  padding: 0 8px;
+}
+
+.activity-type-bullets li{
+  display: inline-block;
+  vertical-align: middle;
+  width: 7px;
+  height: 7px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+}
+
+.activity-type-bullet-1{
+  background: #363636;
+}
+.activity-type-bullet-2{
+  background: #49afcd;
+}
+.activity-type-bullet-3{
+  background: #da4f49;
 }
