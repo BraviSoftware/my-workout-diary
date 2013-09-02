@@ -11,6 +11,9 @@ describe UserMailer do
       mail.to.should eq(["to@example.org"])
       mail.from.should eq([from])
     end
-  end
 
+    it "shows is a activity type for yesterday" do
+      mail.body.encoded.should match(Date.today.prev_day.to_s)
+    end
+  end
 end

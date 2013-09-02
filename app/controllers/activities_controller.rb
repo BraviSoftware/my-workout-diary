@@ -21,4 +21,12 @@ class ActivitiesController < ApplicationController
       render nothing: true, status: :bad_request
     end
   end
+
+  def remote_mark
+    if Activity.mark_by_token(params[:token])
+      render nothing: true, status: :ok
+    else
+      render nothing: true, status: :unprocessable_entity
+    end
+  end
 end

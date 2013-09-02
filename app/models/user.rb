@@ -5,6 +5,18 @@ class User < ActiveRecord::Base
     update_attribute :receive_email_notification, !receive_email_notification
   end
 
+  def generate_email_notification_token
+    update_attribute :email_exercise_token, SecureRandom.uuid
+  end
+
+  def clear_email_notification_token
+    update_attribute :email_exercise_token, nil
+  end
+
+  def email_activity_token_by_activity_type(activity_type)
+    "#{email_exercise_token}_#{activity_type.id}"
+  end
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider

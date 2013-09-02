@@ -91,4 +91,42 @@ describe ActivitiesController do
       response.should be_bad_request
     end
   end
+
+  describe "when POST #remote_mark" do
+    let(:activity_type) { FactoryGirl.create(:activity_type) }
+    before(:each) { current_user.generate_email_notification_token }
+
+    
+    def do_remote_mark(token)
+      post :remote_mark, token: token
+    end
+
+    context "with valid token" do
+      let(:valid_token) { current_user.email_activity_token_by_activity_type(activity_type) }
+      it "responds with ok" do
+        do_remote_mark(valid_token)
+        response.should be_ok
+      end
+
+      it "marks activity" do
+        expect{
+          do_remote_mark(valid_token)
+          }.to change(Activity, :count).by(1)
+      end
+    end
+
+    context "with invalid token" do
+      let(:invalid_token) { "987asd8f7as9df89asd987fs" }
+      it "responds with unprocessable" do
+        do_remote_mark(invalid_token)
+        response.should be_unprocessable
+      end
+
+      it "doesn't mark activity" do
+        expect{
+          do_remote_mark(invalid_token)
+          }.to change(Activity, :count).by(0)
+      end
+    end
+  end
 end

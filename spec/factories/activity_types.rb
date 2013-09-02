@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :activity_type do
-    name "MyString"
-    description "MyString"
-    status false
+    name "Activity"
+    description "Description..."
+    status true
   end
 end

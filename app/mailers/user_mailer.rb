@@ -3,8 +3,10 @@ class UserMailer < ActionMailer::Base
 
   def activity_reminder(user)
     @user = user
-    @user.email_exercise_token = SecureRandom.uuid
-    @user.save
+    @user.generate_email_notification_token
+
+    @yesterday = Date.today.prev_day
+    @ativity_types = ActivityType.all
 
     mail to: @user.email
   end
