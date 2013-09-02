@@ -16,3 +16,8 @@ export MWD_MAIL_USERNAME="insert_the_username_email_sender_here"
 export MWD_MAIL_PASSWORD="insert_the_password_email_sender_here"
 export MWD_HOSTNAME="insert_the_app_url_here"
 ```
+
+There are some data which are always the same (e.g., Activity Types). So lets up the seed data:
+```bash
+rake db:seed
+```
