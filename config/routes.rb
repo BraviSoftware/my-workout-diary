@@ -9,7 +9,7 @@ MyWorkoutDiary::Application.routes.draw do
   
   # Activities
   resources :activities, only: [:index, :create, :destroy]
-  post "activities/remote_mark/:token", to: "activities#remote_mark"
+  post "activities/mark_yesterday_by_token/:token", to: "activities#mark_yesterday_by_token", as: 'mark_yesterday_by_token'
   
   # Users
   match "users/switch_email_notification", via: [:post]

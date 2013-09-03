@@ -92,13 +92,13 @@ describe ActivitiesController do
     end
   end
 
-  describe "when POST #remote_mark" do
+  describe "when POST #mark_yesterday_by_token" do
     let(:activity_type) { FactoryGirl.create(:activity_type) }
     before(:each) { current_user.generate_email_notification_token }
 
     
     def do_remote_mark(token)
-      post :remote_mark, token: token
+      post :mark_yesterday_by_token, token: token
     end
 
     context "with valid token" do

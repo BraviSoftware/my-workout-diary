@@ -3,8 +3,8 @@ Did you do any activity yesterday?
 
 If you forgot, please just submit each item to automatically mark a activity for yesterday (<%= @yesterday %>).
 
-<% @ativity_types.each do |activity_type| %>
-<%= link_to activity_type.name %> - <%= remote_mark_url(token: @user.email_activity_token_by_activity_type(activity_type)) %>
+<% @activity_types.each do |activity_type| %>
+<%= link_to activity_type.name %> - <%= mark_yesterday_by_token_url(token: @user.email_activity_token_by_activity_type(activity_type)) %>
 <% end %>
 
 Or access the My Workout Diary - Application <%= root_url %>

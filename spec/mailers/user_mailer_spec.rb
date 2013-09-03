@@ -6,6 +6,8 @@ describe UserMailer do
     let(:user) { FactoryGirl.build :user, email: "to@example.org" }
     let(:mail) { UserMailer.activity_reminder user }
 
+    before(:each) { FactoryGirl.create :activity_type }
+
     it "renders the headers" do
       mail.subject.should eq("Activity reminder")
       mail.to.should eq(["to@example.org"])

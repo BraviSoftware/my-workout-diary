@@ -22,7 +22,7 @@ class ActivitiesController < ApplicationController
     end
   end
 
-  def remote_mark
+  def mark_yesterday_by_token
     if Activity.mark_by_token(params[:token])
       render nothing: true, status: :ok
     else

@@ -1,13 +1,14 @@
 class Activity < ActiveRecord::Base
   belongs_to :user
   belongs_to :activity_type
+  scope :by_yesterday, -> { where("DATE(date) = ?", Date.today.prev_day) }
 
 
   def self.all_by_date(year, month=nil, day=nil)
     date = Date.new(year.to_i, month.to_i, day.to_i)
     
     # find
-    includes(:user, :activity_type).by_same_date(date).order(:id)
+    includes(:user, :activity_type).by_date(date).order(:id)
   end
 
   def self.create_by_user(params, user)
@@ -52,13 +53,17 @@ class Activity < ActiveRecord::Base
     exists?(id: id, user_id: user.id)
   end  
 
-  def self.by_same_date(date)
+  def self.by_date(date)
     where("DATE(date) = ?", date)
   end
 
   def self.done_by_user_this_type_on_this_date?(user, activity_type_id, date)
     where(activity_type_id: activity_type_id, user_id: user.id)
-    .by_same_date(date)
+    .by_date(date)
     .count > 0
+  end
+
+  def self.all_marked_by_user_yesterday(user)
+    by_yesterday.where(user_id: user.id)
   end
 end

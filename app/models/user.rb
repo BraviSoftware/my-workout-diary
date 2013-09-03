@@ -32,11 +32,10 @@ class User < ActiveRecord::Base
 
   def self.all_want_receive_mail_notification
     where(receive_email_notification: true).
-    where.not(id: all_marked_activity_yesterday.select('users.id'))
-  end
-
-  def self.all_marked_activity_yesterday
-    joins(:activities).
-    where(receive_email_notification: true, activities: { date: Date.yesterday})
+    where("(SELECT COUNT(activities.id) 
+                  FROM activities 
+                  WHERE user_id = users.id AND (DATE(activities.date) = :yesterday)
+                ) < :activity_type_count", 
+                { yesterday: Date.today.prev_day, activity_type_count: ActivityType.count })
   end
 end
