@@ -23,12 +23,13 @@ class Activity < ActiveRecord::Base
   
   def self.mark_by_token(params)
     raw_token = params.split("_")
-    return false unless raw_token.size == 2
+    return false unless raw_token.size == 3
 
-    token = raw_token.first
-    activity_type_id = raw_token.second
+    date = raw_token[0]
+    token = raw_token[1]
+    activity_type_id = raw_token[2]
 
-    return  false unless valid_token?(token, activity_type_id)
+    return  false unless valid_token?(date, token, activity_type_id)
 
     user = User.find_by(email_exercise_token: token)
     yesterday = Date.today.prev_day
@@ -43,7 +44,8 @@ class Activity < ActiveRecord::Base
     activity
   end
 
-  def self.valid_token?(token, activity_type_id)
+  def self.valid_token?(date, token, activity_type_id)
+    return false unless date == Date.today.prev_day.to_s
     return false unless ActivityType.exists?(id: activity_type_id)
     return false unless User.exists?(email_exercise_token: token)
     true

@@ -98,7 +98,7 @@ describe ActivitiesController do
 
     
     def do_remote_mark(token)
-      post :mark_yesterday_by_token, token: token
+      get :mark_yesterday_by_token, token: token
     end
 
     context "with valid token" do

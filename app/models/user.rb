@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   end
 
   def email_activity_token_by_activity_type(activity_type)
-    "#{email_exercise_token}_#{activity_type.id}"
+    "#{Date.today.prev_day}_#{email_exercise_token}_#{activity_type.id}"
   end
 
   def self.from_omniauth(auth)
