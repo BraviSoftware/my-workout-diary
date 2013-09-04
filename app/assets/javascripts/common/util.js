@@ -13,11 +13,22 @@ mwd.common.util = (function(model){
   }
 
   function selectedDate (){
-    var date = new Date();
+    var params = getSelectedOrganizationAndDateParams();
     return {
-      month: date.getMonth() + 1,
-      day: date.getDate(),
-      year: date.getFullYear()
+      month: params.month,
+      day: params.day,
+      year: params.year
+    }
+  }
+
+  function getSelectedOrganizationAndDateParams(){
+    var params = location.pathname.split('/');
+
+    return {
+      organization: params[1],
+      year: parseInt(params[2], 10),
+      month: parseInt(params[3], 10),
+      day: parseInt(params[4], 10)
     }
   }
   
