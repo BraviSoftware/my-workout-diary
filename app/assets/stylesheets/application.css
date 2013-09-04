@@ -12,11 +12,15 @@
  *= require_tree .
  */
 
+/* User Login/Logout Bar
+--------------------------------*/
 #user_nav{
   color: #fff;
   padding: 15px 20px;
 }
 
+/* User Activities
+--------------------------------*/
 #user-activities{
   list-style: none;
 }
@@ -48,6 +52,8 @@
   height: 20px;
 }
 
+/* Activity Type Bullets
+--------------------------------*/
 .activity-type-bullets{
   margin: 0;
   padding: 0 8px;
@@ -63,13 +69,13 @@
   -webkit-border-radius: 150px;
   -moz-border-radius: 150px;
 }
+.activity-type-bullet-1{ background: #363636; }
+.activity-type-bullet-2{ background: #49afcd; }
+.activity-type-bullet-3{ background: #da4f49; }
 
-.activity-type-bullet-1{
-  background: #363636;
-}
-.activity-type-bullet-2{
-  background: #49afcd;
-}
-.activity-type-bullet-3{
-  background: #da4f49;
+/* Facebook
+--------------------------------*/
+#fb-comments {
+  text-align: center;
+  display: block;
 }

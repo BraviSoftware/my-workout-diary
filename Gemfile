@@ -15,7 +15,10 @@ gem 'toastr-rails'
 
 gem 'sdoc', require: false, :group => [:doc]
 
-gem 'pg', :group => [:production]
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
 
 
 group :development, :test do
