@@ -2,7 +2,8 @@ mwd.viewModels.activity = (
   function(serviceActivity, serviceActivityType, Activity, ActivityType, auth, util){
     var activityTypes = ko.observableArray(),
     activities = ko.observableArray([]),
-    activitiesGroupedByUser = ko.observableArray([]);
+    activitiesGroupedByUser = ko.observableArray([]),
+    activityTypesLoadCompleted = ko.observable(false);
 
     function save(activityType) {
       activityType.doneByCurrentUser() ? destroy(activityType) : create(activityType);
@@ -30,7 +31,7 @@ mwd.viewModels.activity = (
     }
 
     function loadActivityTypes(){
-      $.when(serviceActivityType.all()).done(activityTypes);
+      $.when(serviceActivityType.all()).done(activityTypes).then(function(){ activityTypesLoadCompleted(true) });
     }
 
     function loadActivities(){
@@ -106,7 +107,9 @@ mwd.viewModels.activity = (
     var vm = {
       activityTypes: activityTypes,
       activitiesGroupedByUser: activitiesGroupedByUser,
-      save: save
+      save: save,
+      isUserLoggedIn: auth.isUserAuthenticated(),
+      activityTypesLoadCompleted: activityTypesLoadCompleted
     };
 
     (function init(){

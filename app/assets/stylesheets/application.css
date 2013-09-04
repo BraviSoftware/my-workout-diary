@@ -46,6 +46,11 @@
  width: 125px; 
 }
 
+#top-activities { display: none; }
+.load-completed #top-activities { display: block; }
+
+/* Email Notification Bar
+--------------------------------*/
 #email-notification-bar{
   text-align: right;
   padding-top: 5px;
@@ -73,9 +78,6 @@
 .activity-type-bullet-2{ background: #49afcd; }
 .activity-type-bullet-3{ background: #da4f49; }
 
-/* Facebook
+/* Common
 --------------------------------*/
-#fb-comments {
-  text-align: center;
-  display: block;
-}
+.align-center{ text-align: center;}

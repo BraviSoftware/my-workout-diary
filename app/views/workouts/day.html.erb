@@ -1,19 +1,35 @@
-<div class="featurette">
-  <div id="buttons-activities" class="btn-group" data-bind="foreach: activityTypes">
-    <button class="btn" data-toggle="tooltip" data-placement="bottom" 
-            data-bind="attr:{ title: description }, 
-            css:{ active: activated },
-            tooltip: true, click: $parent.save">
-      <img src="" data-bind="attr:{ src: image}" />
-    </button>
+<div class="featurette" data-bind="css: { 'load-completed': $root.activityTypesLoadCompleted }">
+
+  <div id="top-activities">
+    <!-- ko if: $root.isUserLoggedIn -->
+    <!-- Buttons Activities -->
+    <div id="buttons-activities" class="btn-group" data-bind="foreach: activityTypes">
+      <button class="btn" data-toggle="tooltip" data-placement="bottom" 
+              data-bind="attr:{ title: description }, 
+              css:{ active: activated },
+              tooltip: true, click: $parent.save">
+        <img src="" data-bind="attr:{ src: image}" />
+      </button>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: !$root.isUserLoggedIn -->
+    <!-- Warning -->
+    <div class="align-center">
+      <span class="label label-warning">You must be logged in to mark any activity</span>
+    </div>
+    <!-- /ko -->
   </div>
+  
+  <!-- Title -->
   <h2 class="featurette-heading">
     <%= activity_date %>
     <span class="muted"><%= @organization %></span>
   </h2>
+
+  <!-- Users Activites -->
   <div>
     <ul id="user-activities" data-bind="foreach: activitiesGroupedByUser">
-      <!-- <pre data-bind="text: ko.toJSON($data, null, 2)"></pre> -->
       <li>
         <div class="circular"><img data-bind="attr: { src: activities().length && activities()[0].user.picture }" /></div>
         <ul class="activity-type-bullets" data-bind="foreach: activities">
@@ -26,5 +42,7 @@
 </div>
 <hr class="featurette-divider">
 
-  <!-- Facebook Comments -->
-<div id="fb-comments" class="fb-comments" data-href="<%= request.original_url %>"></div>
+<!-- Facebook Comments -->
+<div class="align-center">
+  <div id="fb-comments" class="fb-comments" data-href="<%= request.original_url %>"></div>
+</div>
