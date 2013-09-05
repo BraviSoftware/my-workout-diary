@@ -1,6 +1,8 @@
 <div class="featurette" data-bind="css: { 'load-completed': $root.activityTypesLoadCompleted }">
 
   <div id="top-activities">
+    <%= bootstrap_flash %>
+    
     <!-- ko if: $root.isUserLoggedIn -->
     <!-- Buttons Activities -->
     <div id="buttons-activities" class="btn-group" data-bind="foreach: activityTypes">

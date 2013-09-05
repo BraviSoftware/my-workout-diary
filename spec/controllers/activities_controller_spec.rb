@@ -105,7 +105,7 @@ describe ActivitiesController do
       let(:valid_token) { current_user.email_activity_token_by_activity_type(activity_type) }
       it "responds with ok" do
         do_remote_mark(valid_token)
-        response.should be_ok
+        response.should be_redirect
       end
 
       it "marks activity" do

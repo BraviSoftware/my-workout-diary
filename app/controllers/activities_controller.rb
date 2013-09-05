@@ -24,7 +24,8 @@ class ActivitiesController < ApplicationController
 
   def mark_yesterday_by_token
     if Activity.mark_by_token(params[:token])
-      render nothing: true, status: :ok
+      flash[:notice] = "Successfully marked activity." 
+      redirect_to ("/bravi-software/#{Date.today.prev_day.strftime('%Y/%m/%d')}")
     else
       render nothing: true, status: :unprocessable_entity
     end
