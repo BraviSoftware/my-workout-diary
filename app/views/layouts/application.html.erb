@@ -25,14 +25,14 @@
         <%= yield %>  
       </div>
     </div>
-    <a class="left carousel-control" href="#previous-day" data-slide="prev">‹</a>
-    <a class="right carousel-control" href="#next-day" data-slide="next">›</a>
+    <%= button_activity_day(next: false) %>
+    <%= button_activity_day(next: true) %>
   </div>
 
   <!-- FOOTER -->
   <footer class="container">
     <p class="pull-right"><a href="#">Back to top</a></p>
-    <p>© 2013 Bravi Software. ·</p>
+    <p>© 2013 Bravi Software.</p>
   </footer>
   
   <%= javascript_include_tag "application" %>

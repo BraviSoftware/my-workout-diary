@@ -66,7 +66,7 @@
   }
 
   .carousel-control {
-    height: 80px;
+    height: 50px;
     margin-top: 0;
     font-size: 120px;
     text-shadow: 0 1px 1px rgba(0,0,0,.4);
@@ -93,6 +93,9 @@
     margin-top: 10px;
   }
 
+  .carousel-control:hover, .carousel-control:focus {
+    color: #0088cc
+  }
 
 
   /* MARKETING CONTENT

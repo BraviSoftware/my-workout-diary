@@ -15,4 +15,34 @@ module ApplicationHelper
               title: "Click to switch it"
     end
   end
+
+  def button_activity_day(opts)
+    url = activity_day_url(opts)
+    return unless url
+
+    link_to opts[:next] ? "›" : "‹", 
+      url,
+      class: "#{opts[:next] ? 'right' : 'left'} carousel-control",
+      "data-slide" => opts[:next] ? "next" : "prev", 
+      "data-toggle" => "tooltip", 
+      "data-placement" => opts[:next] ? 'left' : 'right', 
+      "data-bind" => "tooltip: true", 
+      "data-original-title" => opts[:next] ? selected_date.next_day : selected_date.prev_day
+  end
+
+  private
+    def activity_day_url(opts)
+      organization = request.parameters[:organization]
+      date = selected_date
+      return unless organization && date
+
+      date = opts[:next] ? date.next_day : date.prev_day
+      return if date > Date.today
+
+      "/#{organization}/#{date.strftime('%Y/%m/%d')}"
+    end
+
+    def selected_date
+      Date.parse("#{request.parameters[:year]}/#{request.parameters[:month]}/#{request.parameters[:day]}") rescue nil
+    end
 end
