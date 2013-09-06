@@ -23,7 +23,6 @@ module ApplicationHelper
     link_to opts[:next] ? "›" : "‹", 
       url,
       class: "#{opts[:next] ? 'right' : 'left'} carousel-control",
-      "data-slide" => opts[:next] ? "next" : "prev", 
       "data-toggle" => "tooltip", 
       "data-placement" => opts[:next] ? 'left' : 'right', 
       "data-bind" => "tooltip: true", 
