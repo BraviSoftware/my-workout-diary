@@ -2,7 +2,14 @@ MyWorkoutDiary::Application.routes.draw do
   root to: redirect("/bravi-software/#{Time.now.strftime('%Y/%m/%d')}")
 
   # Workouts
-  match ':organization/:year/:month/:day', to: 'workouts#day', as: 'day', via: [:get]
+  match ':organization/:year/:month/:day', 
+    to: 'workouts#day', as: 'day', via: [:get],
+    defaults: { 
+      organization: 'bravi-software', 
+      year: Date.today.year, 
+      month: "%02d" % Date.today.month, 
+      day: "%02d" % Date.today.day 
+    }
   
   # Activity Types
   match "activity_types", to: "activity_types#index", via:[:get]

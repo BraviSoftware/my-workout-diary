@@ -24,11 +24,27 @@ mwd.common.util = (function(model){
   function getSelectedOrganizationAndDateParams(){
     var params = location.pathname.split('/');
 
-    return {
+    var selected = {
       organization: params[1],
       year: parseInt(params[2], 10),
       month: parseInt(params[3], 10),
       day: parseInt(params[4], 10)
+    };
+
+    if(!selected.organization || !selected.year || !selected.month || !selected.day){
+      return defaultOrganizationAndDateParams();
+    }
+
+    return selected;
+  }
+
+  function defaultOrganizationAndDateParams (){
+    var date = new Date();
+    return {
+      organization: 'bravi-software',
+      month: date.getMonth() + 1,
+      day: date.getDate(),
+      year: date.getFullYear()
     }
   }
   
