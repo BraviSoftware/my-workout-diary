@@ -2,8 +2,8 @@ class Activity < ActiveRecord::Base
   belongs_to :user
   belongs_to :activity_type
   scope :by_yesterday, -> { where("DATE(date) = ?", Date.today.prev_day) }
-  scope :by_year, lambda { |year| where("strftime('%Y', date) = ?", year) }
-  scope :by_month, lambda { |month| where("strftime('%m', date) = ?", "%02d" % month) }
+  scope :by_year, lambda { |year| where("extract(year from date) = ?", year) }
+  scope :by_month, lambda { |month| where("extract(month from date) = ?", month) }
 
 
   def self.all_by_date(year, month=nil, day=nil)

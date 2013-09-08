@@ -11,17 +11,16 @@ gem 'omniauth-facebook', '1.4.0'
 gem 'twitter-bootstrap-rails'
 gem "rufus-scheduler"
 gem 'toastr-rails'
+gem 'pg'
 
 gem 'sdoc', require: false, :group => [:doc]
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end
 
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner', '<= 1.0.1' # temporarily downgraded, broken in rails 4
