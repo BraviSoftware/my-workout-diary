@@ -9,6 +9,11 @@ MyWorkoutDiary::Application.routes.draw do
       year: Date.today.year, 
       month: "%02d" % Date.today.month, 
       day: "%02d" % Date.today.day 
+    }, 
+    constraints: {
+      organization: 'bravi-software',
+      month: /\d{2}/, 
+      day: /\d{2}/ 
     }
   
   # Activity Types
