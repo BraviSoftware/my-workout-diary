@@ -1,0 +1,27 @@
+<!-- Title -->
+<h2 class="featurette-heading">
+  <%= activity_title %>
+  <span class="muted"><%= username_title %></span>
+</h2>
+
+<table class="table  table-striped">
+  <tr>
+    <th>Day </th>
+    <% @activity_types.each do |activity_type| %>
+    <th><%= image_tag(activity_type.image, "data-bind" => "tooltip: true", "data-original-title" => activity_type.name) %></th>
+    <% end %>
+  </tr>
+
+  <% group_activities_by_day(@activities).each do |date, activities| %>
+  <tr>
+    <td><%= link_to "%02d" % date.day, 
+                              day_path(year: date.year, month: date.month, day: date.day), 
+                              "data-bind" => "tooltip: true", 
+                              "data-original-title" => "Move to this date to manage your activities" %>
+    </td>
+    <% @activity_types.each do |activity_type| %>
+    <th><%= activity_type_bullet(activity_type, activities) %></th>
+    <% end %>
+  </tr>
+  <% end %>
+</table>

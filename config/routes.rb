@@ -18,6 +18,9 @@ MyWorkoutDiary::Application.routes.draw do
   resources :activities, only: [:index, :create, :destroy]
   get "activities/mark_yesterday_by_token/:token", to: "activities#mark_yesterday_by_token", as: 'mark_yesterday_by_token'
   
+  # User Activities
+  get "users/:username/activities/:year/:month", to: "user_activities#index", as: "user_activities"
+
   # Users
   match "users/switch_email_notification", via: [:post]
 

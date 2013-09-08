@@ -26,10 +26,12 @@
                 </ul>
               </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mine <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">My <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">This Week</a></li>
-                  <li><a href="#">This Month</a></li>
+                  <li><%= link_to "This Month", user_activities_path(year: Date.today.year, 
+                                                                                            month: Date.today.month,
+                                                                                            username: "maxcnunes") %></li>
                   <li><a href="#">This Year</a></li>
                   <li><a href="#">All activities</a></li>
                   <li class="divider"></li>

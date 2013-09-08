@@ -64,7 +64,8 @@
   padding: 0 8px;
 }
 
-.activity-type-bullets li{
+.activity-type-bullets li,
+.activity-type-bullet{
   display: inline-block;
   vertical-align: middle;
   width: 7px;
