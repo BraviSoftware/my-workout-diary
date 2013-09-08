@@ -44,6 +44,11 @@
         </ul>
       </li>
     </ul>
+
+    <!-- Warning -->
+    <div class="align-center" data-bind="visible: activitiesGroupedByUser().length === 0">
+      <span class="label label-info">Have not been registered any activity for this day yet</span>
+    </div>
   </div>
 </div>
 <hr class="featurette-divider">

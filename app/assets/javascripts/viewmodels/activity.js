@@ -10,7 +10,7 @@ mwd.viewModels.activity = (
     }
 
     function create(activityType) {
-      var activity = new Activity({ date: new Date(), activity_type_id: activityType.id });
+      var activity = new Activity({ date: util.selectedDate().date, activity_type_id: activityType.id });
       $.when(serviceActivity.create(activity))
       .done(function(activity){
         addActivity(activityType, activity);

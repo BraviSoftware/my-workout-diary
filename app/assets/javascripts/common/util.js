@@ -17,7 +17,8 @@ mwd.common.util = (function(model){
     return {
       month: params.month,
       day: params.day,
-      year: params.year
+      year: params.year,
+      date: new Date(params.year, params.month - 1, params.day)
     }
   }
 
