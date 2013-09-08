@@ -8,7 +8,6 @@
 //= require_directory ./common
 //= require_directory ./models
 //= require_directory ./services
-//= require ./viewmodels/activity
 
 /* Global Namespaces
 --------------------*/

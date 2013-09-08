@@ -1,4 +1,4 @@
-<div class="featurette" data-bind="css: { 'load-completed': $root.activityTypesLoadCompleted }">
+<div data-bind="css: { 'load-completed': $root.activityTypesLoadCompleted }">
 
   <div id="top-activities">
     <%= bootstrap_flash %>
@@ -52,3 +52,6 @@
 <div class="align-center">
   <div id="fb-comments" class="fb-comments" data-href="<%= request.original_url %>"></div>
 </div>
+
+<!-- Js this page -->
+<%= javascript_include_tag "viewmodels/activity" %>
