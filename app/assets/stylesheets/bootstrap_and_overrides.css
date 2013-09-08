@@ -73,6 +73,7 @@
     background-color: transparent;
     border: 0;
     z-index: 10;
+    color: #000;
   }
 
   .carousel-caption {
@@ -152,6 +153,10 @@
 
   @media (max-width: 979px) {
 
+    div.carousel {
+      margin-top: 60px;
+    }
+
     .container.navbar-wrapper {
       margin-bottom: 0;
       width: auto;
@@ -214,8 +219,6 @@
       line-height: 1.5;
     }
 
-  }
-
-  .carousel-control{
-    color: #000;
+    .carousel-control { left: 0; width: 20px; }
+    .carousel-control .right { right: 0; }
   }

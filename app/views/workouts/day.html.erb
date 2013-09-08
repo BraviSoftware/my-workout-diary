@@ -1,4 +1,4 @@
-<div data-bind="css: { 'load-completed': $root.activityTypesLoadCompleted }">
+<div id="content-activities" data-bind="css: { 'load-completed': $root.activityTypesLoadCompleted }">
 
   <div id="top-activities">
     <%= bootstrap_flash %>
@@ -29,8 +29,8 @@
     <span class="muted"><%= @organization %></span>
   </h2>
 
-  <!-- Users Activites -->
-  <div>
+  <div data-bind="visible: activitiesGroupedByUserLoadCompleted">
+    <!-- Users Activites -->
     <ul id="user-activities" data-bind="foreach: activitiesGroupedByUser">
       <li>
         <div class="circular">
@@ -44,9 +44,8 @@
         </ul>
       </li>
     </ul>
-
     <!-- Warning -->
-    <div class="align-center" data-bind="visible: activitiesGroupedByUser().length === 0">
+    <div id="label-no-activities" data-bind="visible: activitiesGroupedByUser().length === 0">
       <span class="label label-info">Have not been registered any activity for this day yet</span>
     </div>
   </div>

@@ -16,4 +16,8 @@ module UserActivitiesHelper
       content_tag( :div, '', :class=>"activity-type-bullet activity-type-bullet-#{activity_type.id}")
     end
   end
+
+  def easter_egg_user_not_found(user_exists)
+    image_tag "http://i.qkme.me/3ri3lh.jpg", id: "easter_egg_user_not_found" unless user_exists
+  end
 end

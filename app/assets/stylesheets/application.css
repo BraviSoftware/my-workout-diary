@@ -21,7 +21,12 @@
 
 /* User Activities
 --------------------------------*/
+#content-activities{
+  min-height: 300px;
+}
+
 #user-activities{
+  margin: 10px 25px;
   list-style: none;
 }
 
@@ -48,6 +53,16 @@
 
 #top-activities { display: none; }
 .load-completed #top-activities { display: block; }
+
+#label-no-activities{
+  padding-top: 80px;
+  text-align: center;
+}
+
+#easter_egg_user_not_found{
+  display: block;
+  margin: 10px auto;
+}
 
 /* Email Notification Bar
 --------------------------------*/
@@ -82,3 +97,10 @@
 /* Common
 --------------------------------*/
 .align-center{ text-align: center;}
+
+
+/* Responsive Design
+--------------------------------*/
+@media (max-width: 600px) {
+#email-notification-bar { text-align: center; }
+}

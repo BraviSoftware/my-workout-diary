@@ -3,7 +3,8 @@ mwd.viewModels.activity = (
     var activityTypes = ko.observableArray(),
     activities = ko.observableArray([]),
     activitiesGroupedByUser = ko.observableArray([]),
-    activityTypesLoadCompleted = ko.observable(false);
+    activityTypesLoadCompleted = ko.observable(false),
+    activitiesGroupedByUserLoadCompleted = ko.observable(false);
 
     function save(activityType) {
       activityType.doneByCurrentUser() ? destroy(activityType) : create(activityType);
@@ -47,6 +48,8 @@ mwd.viewModels.activity = (
           }
         });
         groupActivitiesByUser();
+
+        activitiesGroupedByUserLoadCompleted(true);
       });
     }
 
@@ -109,7 +112,8 @@ mwd.viewModels.activity = (
       activitiesGroupedByUser: activitiesGroupedByUser,
       save: save,
       isUserLoggedIn: auth.isUserAuthenticated(),
-      activityTypesLoadCompleted: activityTypesLoadCompleted
+      activityTypesLoadCompleted: activityTypesLoadCompleted,
+      activitiesGroupedByUserLoadCompleted: activitiesGroupedByUserLoadCompleted
     };
 
     (function init(){
