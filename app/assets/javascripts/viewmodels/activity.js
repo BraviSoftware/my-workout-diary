@@ -11,6 +11,7 @@ mwd.viewModels.activity = (
     }
 
     function create(activityType) {
+      debugger;
       var activity = new Activity({ date: util.selectedDate().date, activity_type_id: activityType.id });
       $.when(serviceActivity.create(activity))
       .done(function(activity){
@@ -127,10 +128,10 @@ mwd.viewModels.activity = (
 // Apply binds
 $(function(){
   ko.applyBindings(new mwd.viewModels.activity(
-    new mwd.services.activity(mwd.models.activity),
-    new mwd.services.activityType(mwd.models.activityType),
-    mwd.models.activity,
-    mwd.models.activityType,
+    new mwd.services.activity(mwd.models.activity(mwd.models.user(), mwd.models.activityType())),
+    new mwd.services.activityType(mwd.models.activityType()),
+    mwd.models.activity(),
+    mwd.models.activityType(),
     mwd.common.authentication(),
     mwd.common.util()
     )
