@@ -5,7 +5,7 @@ class ActivitiesController < ApplicationController
   end
   
   def create
-    @activity = Activity.create_by_user(params[:activity], current_user)
+    @activity = UserActivity.create(current_user, params[:activity])
     if @activity.present?
       render 'create.json.jbuilder', status: :created
     else
@@ -14,7 +14,7 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
-    if Activity.belongs_to_user?(params[:id], current_user)
+    if UserActivity.belongs_to_user?(current_user, params[:id])
       Activity.destroy(params[:id])
       render nothing: true, status: :no_content
     else
@@ -23,7 +23,7 @@ class ActivitiesController < ApplicationController
   end
 
   def mark_yesterday_by_token
-    if Activity.mark_by_token(params[:token])
+    if ActivityReminder.mark_by_token(params[:token])
       flash[:notice] = "Successfully marked activity." 
       redirect_to ("/bravi-software/#{Date.today.prev_day.strftime('%Y/%m/%d')}")
     else

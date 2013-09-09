@@ -13,6 +13,6 @@ class ActivityType < ActiveRecord::Base
   end
 
   def self.all_not_done_by_user_yesterday(user)
-    where.not(id: Activity.all_marked_by_user_yesterday(user).select(:activity_type_id))
+    where.not(id: UserActivity.all_from_yesterday(user).select(:activity_type_id))
   end
 end
