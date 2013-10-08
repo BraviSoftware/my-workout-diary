@@ -40,8 +40,4 @@ module ApplicationHelper
 
       "/#{organization}/#{date.strftime('%Y/%m/%d')}"
     end
-
-    def selected_date
-      Date.parse("#{request.parameters[:year]}/#{request.parameters[:month]}/#{request.parameters[:day]}") rescue nil
-    end
 end

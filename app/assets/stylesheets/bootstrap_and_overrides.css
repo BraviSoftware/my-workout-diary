@@ -144,6 +144,10 @@
     line-height: 1;
     letter-spacing: -1px;
     font-family: 'Ubuntu', sans-serif;
+    margin-bottom: 0;
+  }
+  .featurette-heading-sub {
+    margin-top: 0;
   }
 
 
