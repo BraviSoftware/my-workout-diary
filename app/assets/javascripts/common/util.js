@@ -5,12 +5,10 @@ mwd.common.util = (function(model){
     for(var i = 0; i < items.length; i++){
       list.push(mapItemToModel(items[i], modelType));
     };
-    // debugger;
     return list;
   }
 
   function mapItemToModel (item, modelType) {
-    // debugger;
     return new modelType(item);
   }
 

@@ -3,8 +3,8 @@ class Activity < ActiveRecord::Base
   belongs_to :activity_type
   scope :by_date, lambda { |date| where("DATE(date) = ?", date) }
   scope :by_yesterday, -> { Activity.by_date(Date.today.prev_day) }
-  scope :by_year, lambda { |year| where("extract(year from date) = ?", year) }
-  scope :by_month, lambda { |month| where("extract(month from date) = ?", month) }
+  scope :by_year, lambda { |year| where("extract(year from date) = ?", year.to_i) }
+  scope :by_month, lambda { |month| where("extract(month from date) = ?", month.to_i) }
 
 
   def self.all_by_date(year, month=nil, day=nil)

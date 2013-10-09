@@ -4,4 +4,9 @@ class UserActivitiesController < ApplicationController
     @activities = UserActivity.all_by_date(params[:username], params[:year], params[:month], params[:day])
     @user_exists = User.exists? username: params[:username]
   end
+
+  def all_users_by_date
+    @activity_types = ActivityType.all
+    @users = User.all
+  end
 end

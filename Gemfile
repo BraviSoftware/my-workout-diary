@@ -12,6 +12,7 @@ gem 'twitter-bootstrap-rails'
 gem "rufus-scheduler"
 gem 'toastr-rails'
 gem 'pg'
+gem "chartkick"
 
 gem 'sdoc', require: false, :group => [:doc]
 

@@ -25,6 +25,7 @@ MyWorkoutDiary::Application.routes.draw do
   
   # User Activities
   get "users/:username/activities/:year/:month", to: "user_activities#index", as: "user_activities"
+  get "users/activities/:year/:month", to: "user_activities#all_users_by_date", as: "all_users_by_date"
 
   # Users
   match "users/switch_email_notification", via: [:post]
