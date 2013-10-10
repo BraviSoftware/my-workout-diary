@@ -1,0 +1,15 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<!-- Title -->
+<h2 class="featurette-heading">
+  <%= activity_title %>
+  <span class="muted">All users - Charts</span>
+</h2>
+
+<% @activity_types.each do |activity_type| %>
+  <h3>
+    <%= image_tag(activity_type.image, "data-bind" => "tooltip: true", "data-original-title" => activity_type.name) %>
+    <%= activity_type.name %>
+  </h3>
+  <!-- Chart -->
+  <%= column_chart @users_activities.by_activity_type_group_by_user_name(activity_type).count  %>
+<% end %>

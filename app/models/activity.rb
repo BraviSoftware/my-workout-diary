@@ -13,4 +13,8 @@ class Activity < ActiveRecord::Base
     # find
     includes(:user, :activity_type).by_date(date).order(:id)
   end
+
+  def self.by_activity_type_group_by_user_name(activity_type)
+    where(activity_type_id: activity_type.id).group("users.name")
+  end
 end
