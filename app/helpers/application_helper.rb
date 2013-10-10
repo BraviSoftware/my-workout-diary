@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def user_picture_src(username)
+    "https://graph.facebook.com/#{username}/picture?type=small"
+  end
+
   def user_activated_email_notification
     if current_user
       if current_user.receive_email_notification

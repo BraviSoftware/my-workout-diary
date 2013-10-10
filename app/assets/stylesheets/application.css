@@ -35,7 +35,8 @@
   margin: 10px;  
 }
 
-#user-activities>li img{
+#user-activities>li img,
+#user-activities td.user_circ_picture img{
   border: 1px solid #ccc;
   border-radius: 150px;
   -webkit-border-radius: 150px;
@@ -43,7 +44,14 @@
   box-shadow: 0 0 8px rgba(0, 0, 0, .8);
   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
   -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  max-width: 50px;
 }
+
+/* Table All Users*/
+table#user-activities {margin: 10px 0;}
+#user-activities th,
+#user-activities td { text-align: center; }
+#user-activities td.user_circ_picture img { max-width: 40px;margin: 0;}
 
 #buttons-activities{
  margin: 0 auto 40px auto;
@@ -93,6 +101,8 @@
 .activity-type-bullet-1{ background: #363636; }
 .activity-type-bullet-2{ background: #49afcd; }
 .activity-type-bullet-3{ background: #da4f49; }
+
+#user-activities td .activity-type-bullet{ display: block; margin:0 auto 5px auto;}
 
 /* Common
 --------------------------------*/

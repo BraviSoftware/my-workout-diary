@@ -7,6 +7,8 @@ class UserActivitiesController < ApplicationController
 
   def all_users_by_date
     @activity_types = ActivityType.all
-    @users = User.all
+    @users_activities = UserActivity.all_users_by_date(params[:year], params[:month])
+                                                          .joins('LEFT OUTER JOIN users ON users.id = activities.user_id')
+                                                          .order("users.name")
   end
 end

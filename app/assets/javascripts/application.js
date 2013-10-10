@@ -31,7 +31,7 @@ toastr.options = {
 }
 
 $(function(){
-  $('a[data-toggle="tooltip"]').tooltip({container: 'body'});
+  $('[data-toggle="tooltip"]').tooltip({container: 'body'});
 
   $("#email-notification-bar").on("ajax:success", "a[data-remote]", function(e, data){
     var badge = $(this).find('.badge');

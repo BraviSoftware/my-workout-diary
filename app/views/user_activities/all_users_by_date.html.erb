@@ -1,20 +1,33 @@
-<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 <!-- Title -->
 <h2 class="featurette-heading">
   <%= activity_title %>
-  <span class="muted">All users</span>
+  <span class="muted">All Users</span>
 </h2>
 
-<% @activity_types.each do |activity_type| %>
-  <h3>
-    <%= image_tag(activity_type.image, "data-bind" => "tooltip: true", "data-original-title" => activity_type.name) %>
-    <%= activity_type.name %>
-  </h3>
-  <!-- Chart -->
-  <%= line_chart @users.map{|user|
-      { 
-        name: user.name, 
-        data: user.activities.where(activity_type_id: activity_type.id).group("date").count 
-      }
-    } %>
-<% end %>
+<table id="user-activities" class="table  table-striped">
+  <tr>
+    <th></th>
+    <% list_days_in_month.each do |day| %>
+    <th>
+      <%= link_to_day(day) %>
+    </th>
+    <% end %>
+  </tr>
+  
+  <% group_activities_by_user(@users_activities).each do |user, activities| %>
+  <tr>
+    <td class="user_circ_picture">
+      <%= image_tag user_picture_src(user.username), title: user.name, "data-toggle"=> "tooltip" %>
+    </td>
+
+    <!-- Days+Activities -->
+    <% list_days_in_month.each do |day| %>
+      <td>
+        <% @activity_types.each do |activity_type| %>
+          <%= activity_type_bullet_by_date(activity_type, activities, day) %>
+        <% end %>
+      </td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
