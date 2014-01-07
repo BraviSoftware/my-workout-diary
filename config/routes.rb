@@ -24,7 +24,7 @@ MyWorkoutDiary::Application.routes.draw do
   get "activities/mark_yesterday_by_token/:token", to: "activities#mark_yesterday_by_token", as: 'mark_yesterday_by_token'
   
   # User Activities
-  get "users/:username/activities/:year/:month", to: "user_activities#index", as: "user_activities"
+  get "users/:username/activities/:year/:month", to: "user_activities#index", as: "user_activities", :username => /.*/
   get "users/activities/:year/:month", to: "user_activities#all_users_by_date", as: "all_users_by_date"
   get "users/activities/charts/:year/:month", to: "user_activities#all_users_by_date_charts", as: "all_users_by_date_charts"
 
