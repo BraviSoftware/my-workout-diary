@@ -3,8 +3,12 @@ mwd.services.activity = (function(model){
 
   function all(year, month, day){
     return $.Deferred(function (def) {
-      $.getJSON(serviceUrl, { year: year, month: month, day: day }, function(data){
+      $.getJSON(serviceUrl, { year: year, month: month, day: day })
+      .done(function(data){
         def.resolve(mwd.common.util().mapListToModel(data, model));
+      })
+      .fail(function(jqxhr, textStatus, error){
+        def.reject(textStatus + ", " + error);
       });
     }).promise();
   }
@@ -13,6 +17,9 @@ mwd.services.activity = (function(model){
     return $.Deferred(function (def) {
       $.post(serviceUrl, { activity: activity }).done(function(data){
         def.resolve(mwd.common.util().mapItemToModel(data, model));
+      })
+      .fail(function(jqxhr, textStatus, error){
+        def.reject(textStatus + ", " + error);
       });
     }).promise();
   }

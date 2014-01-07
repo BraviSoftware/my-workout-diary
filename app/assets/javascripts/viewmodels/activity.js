@@ -16,6 +16,9 @@ mwd.viewModels.activity = (
       .done(function(activity){
         addActivity(activityType, activity);
         toastr.success('Successfully marked activity.');
+      })
+      .fail(function(error){
+        toastr.error('Error creating an activity.<br>' + error);
       });
     }
 
@@ -24,6 +27,9 @@ mwd.viewModels.activity = (
       .done(function(){
         removeActivity(activityType);
         toastr.success('Successfully unmarked activity.');
+      })
+      .fail(function(error){
+        toastr.error('Error deleting an activity.<br>' + error);
       });
     }
 
