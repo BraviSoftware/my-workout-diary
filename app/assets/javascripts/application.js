@@ -43,4 +43,14 @@ $(function(){
   $("#buttons-activities").on("ajax:success", 'a[data-btnajax="activity"]', function(e, data){
     $(this).addClass('disabled');
   });
+
+  $('#user-activities').on('mouseenter mouseleave', 'td, th', function(e) {
+    var columns = $("colgroup").eq($(this).index());
+    if (e.type == 'mouseenter') {
+      columns.addClass("hoverColumn");
+    }
+    else {
+      columns.removeClass("hoverColumn");
+    }
+  });
 })
