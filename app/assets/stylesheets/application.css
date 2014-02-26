@@ -52,7 +52,11 @@ table#user-activities {margin: 10px 0;}
 #user-activities th,
 #user-activities td { text-align: center; }
 #user-activities td.user_circ_picture img { max-width: 40px;margin: 0;}
-#user-activities  > colgroup.hoverColumn { background: #E8E8E8 !important; }
+#user-activities td.columnHighlight,
+#user-activities th.columnHighlight { 
+  background: #EDEDED; 
+  text-shadow: 2px 8px 6px rgba(0,0,0,0.2), 0px -5px 35px rgba(255,255,255,0.3);
+}
 
 #buttons-activities{
  margin: 0 auto 40px auto;

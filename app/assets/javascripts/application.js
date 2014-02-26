@@ -44,13 +44,15 @@ $(function(){
     $(this).addClass('disabled');
   });
 
-  $('#user-activities').on('mouseenter mouseleave', 'td, th', function(e) {
-    var columns = $("colgroup").eq($(this).index());
-    if (e.type == 'mouseenter') {
-      columns.addClass("hoverColumn");
-    }
-    else {
-      columns.removeClass("hoverColumn");
-    }
-  });
+  var allCells = $("td, th", "#user-activities");
+  allCells.on("mouseover", function() {
+      var el = $(this),
+          pos = el.index();
+          if (pos > 0) {
+            allCells.filter(":nth-child(" + (pos+1) + ")").addClass("columnHighlight");
+          };
+    })
+    .on("mouseout", function() {
+      allCells.removeClass("columnHighlight");
+    });
 })
