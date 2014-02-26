@@ -4,6 +4,7 @@
 //= require knockout
 //= require underscore-min
 //= require toastr
+//= require bootstrap-datepicker
 //= require_self
 //= require_directory ./common
 //= require_directory ./models
@@ -44,6 +45,8 @@ $(function(){
     $(this).addClass('disabled');
   });
 
+  /* Column Highlight
+  =============*/
   var allCells = $("td, th", "#user-activities");
   allCells.on("mouseover", function() {
       var el = $(this),

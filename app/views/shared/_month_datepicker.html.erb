@@ -1,0 +1,10 @@
+<div class="btn" id="datepickerMonth" 
+        data-date="<%= "#{request.parameters[:month]}/#{request.parameters[:year]}" %>" 
+        data-date-format="mm/yyyy" 
+        data-date-viewmode="years" 
+        data-date-minviewmode="months">
+  <span class="add-on"><i class="icon-calendar"></i></span>
+</div>
+
+<!-- Js this page -->
+<%= javascript_include_tag "viewmodels/datepicker" %>
