@@ -3,6 +3,7 @@ class UserActivitiesController < ApplicationController
     @activity_types = ActivityType.all
     @activities = UserActivity.all_by_date(params[:username], params[:year], params[:month], params[:day])
     @user_exists = User.exists? username: params[:username]
+    @user_name = User.where(:username => params[:username]).first.name if @user_exists
   end
 
   def all_users_by_date

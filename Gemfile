@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
+gem 'omniauth-google-oauth2'
 gem 'twitter-bootstrap-rails'
 gem "rufus-scheduler"
 gem 'toastr-rails'

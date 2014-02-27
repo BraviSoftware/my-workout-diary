@@ -1,8 +1,11 @@
 <div id="user_nav" class="pull-right">
   <% if current_user %>
-    Signed in as <strong id="user" data-id="<%= current_user.id %>"><%= current_user.name %></strong>!
+  <%= user_signedin %>
+    <strong id="user" data-id="<%= current_user.id %>"><%= current_user.name %></strong>
     <%= link_to "Sign out", signout_path, id: "sign_out" %>
   <% else %>
-    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+    Sign in with: 
+    <%= link_to image_tag("facebook.png"), "/auth/facebook", title: "Facebook", id: "sign_in" %>
+    <%= link_to image_tag("google.png"), "/auth/google_oauth2", title: "Google", id: "sign_in" %>
   <% end %>
 </div>

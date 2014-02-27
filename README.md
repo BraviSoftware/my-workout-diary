@@ -12,6 +12,8 @@ Add these configurations below into your .bashrc or .zshrc file and reload the s
 ```bash
 export MWD_FACEBOOK_APP_ID="insert_the_facebook_app_id_here"
 export MWD_FACEBOOK_SECRET="insert_the_secrete_key_here"
+export MWD_GOOGLE_KEY="insert_the_google_client_id_here"
+export MWD_GOOGLE_SECRET="insert_the_google_client_secrete_here"
 export MWD_MAIL_USERNAME="insert_the_username_email_sender_here"
 export MWD_MAIL_PASSWORD="insert_the_password_email_sender_here"
 export MWD_HOSTNAME="insert_the_app_url_here"

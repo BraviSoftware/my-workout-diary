@@ -3,10 +3,6 @@ module UserActivitiesHelper
     "#{Date::MONTHNAMES[request.parameters[:month].to_i]} of #{request.parameters[:year]}"
   end
 
-  def username_title
-    request.parameters[:username]
-  end
-
   def link_to_day(day, month=nil, year=nil)
     year = year || request.parameters[:year].to_i
     month = month || request.parameters[:month].to_i

@@ -18,7 +18,7 @@
   <% group_activities_by_user(@users_activities).each do |user, activities| %>
   <tr>
     <td class="user_circ_picture">
-      <%= image_tag user_picture_src(user.username), title: user.name, "data-toggle"=> "tooltip" %>
+      <%= image_tag user_picture_src(user), title: user.name, "data-toggle"=> "tooltip" %>
     </td>
 
     <!-- Days+Activities -->

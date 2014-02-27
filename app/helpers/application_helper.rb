@@ -1,6 +1,18 @@
 module ApplicationHelper
-  def user_picture_src(username)
-    "https://graph.facebook.com/#{username}/picture?type=small"
+  def user_picture_src(user)
+    if user.provider == 'facebook'
+      "https://graph.facebook.com/#{user.username}/picture?type=small"
+    else
+      "https://plus.google.com/s2/photos/profile/#{user.uid}?sz=100"
+    end
+  end
+
+  def user_signedin
+    if current_user.provider == "facebook"
+      image_tag("facebook.png", :title => "Signed in with Facebook")
+    else
+      image_tag("google.png", :title => "Signed in with Google")
+    end
   end
 
   def user_activated_email_notification
