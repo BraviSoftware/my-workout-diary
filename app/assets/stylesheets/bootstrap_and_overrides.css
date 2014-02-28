@@ -173,6 +173,8 @@
     .featurette {
       height: auto;
       padding: 0;
+      overflow-x: scroll;
+      width: 100%; 
     }
     .featurette-image.pull-left,
     .featurette-image.pull-right {
