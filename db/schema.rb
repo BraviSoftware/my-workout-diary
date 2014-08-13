@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130818005608) do
+ActiveRecord::Schema.define(version: 20140813170133) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "activities", force: true do |t|
     t.datetime "date"
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 20130818005608) do
     t.integer  "user_id"
   end
 
-  add_index "activities", ["activity_type_id"], name: "index_activities_on_activity_type_id"
-  add_index "activities", ["user_id"], name: "index_activities_on_user_id"
+  add_index "activities", ["activity_type_id"], name: "index_activities_on_activity_type_id", using: :btree
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "activity_types", force: true do |t|
     t.string   "name"
@@ -44,6 +47,7 @@ ActiveRecord::Schema.define(version: 20130818005608) do
     t.datetime "updated_at"
     t.string   "email_exercise_token"
     t.boolean  "receive_email_notification"
+    t.string   "picture"
   end
 
 end

@@ -5,15 +5,17 @@ mwd.models.user = (function(){
     self.provider = dto.provider;
     self.id = dto.id;
     self.uid = dto.uid;
+    self.oauth_token = dto.oauth_token;
     self.name = dto.name;
     self.username = dto.username;
-    if (self.provider === 'facebook') {
-      self.picture = "https://graph.facebook.com/" + self.username + "/picture?type=small";
-    } else {
-      self.picture = "https://plus.google.com/s2/photos/profile/" + self.uid + "?sz=100";
+    self.picture = dto.picture;
+
+    if (/google/i.test(self.provider)) {
+      self.picture = self.picture += '?sz=100';
     }
+    
     return self;
-  }
+  };
 
 
   return User;

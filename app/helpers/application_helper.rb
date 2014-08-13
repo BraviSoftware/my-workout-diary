@@ -1,9 +1,9 @@
 module ApplicationHelper
   def user_picture_src(user)
     if user.provider == 'facebook'
-      "https://graph.facebook.com/#{user.username}/picture?type=small"
+      user.picture
     else
-      "https://plus.google.com/s2/photos/profile/#{user.uid}?sz=100"
+      "#{user.picture}?sz=100"
     end
   end
 
